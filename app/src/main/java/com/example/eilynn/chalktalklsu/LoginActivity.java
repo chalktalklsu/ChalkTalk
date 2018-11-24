@@ -47,10 +47,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                checkUser();
+                                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_LONG).show();
+                                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
                             else{
-                                Toast.makeText(LoginActivity.this, "User not found.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "User information invalid.", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -61,23 +62,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void checkUser(){
-        final String userId = auth.getCurrentUser().getUid();
-        dB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(userId)){
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "User information invalid.",Toast.LENGTH_LONG).show();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
 }
