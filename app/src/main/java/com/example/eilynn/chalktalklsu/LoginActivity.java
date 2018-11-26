@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userEmail, userPassword;
     private FirebaseAuth auth;
     private DatabaseReference dB;
-    private Button loginButton;
+    private Button loginButton, regBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,15 @@ public class LoginActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.email);
         userPassword = findViewById(R.id.password);
         loginButton = findViewById(R.id.email_sign_in_button);
+        regBtn = findViewById(R.id.toregbutton);
         auth = FirebaseAuth.getInstance();
         dB = FirebaseDatabase.getInstance().getReference().child("Users");
+        regBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
