@@ -92,10 +92,18 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if(id == R.id.create_post){
+            SendUserToPostActivity();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void SendUserToPostActivity() {
+        Intent newPost = new Intent(MainActivity.this, PostActivity.class);
+        startActivity(newPost);
     }
 }
