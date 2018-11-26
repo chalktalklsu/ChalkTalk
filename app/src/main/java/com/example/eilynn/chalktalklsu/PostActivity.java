@@ -1,6 +1,8 @@
 package com.example.eilynn.chalktalklsu;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +17,7 @@ public class PostActivity extends AppCompatActivity {
     private EditText postText;
    // private Toolbar toolbar;
     private static final int gallery_pick = 1;
-
+    private Uri ImageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,15 @@ public class PostActivity extends AppCompatActivity {
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, gallery_pick);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == gallery_pick && resultCode == RESULT_OK && data != null){
+            ImageUri = data.getData();
+            selectPostImage.setImageURI(ImageUri);
+        }
     }
 }
 
