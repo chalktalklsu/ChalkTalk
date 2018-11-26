@@ -41,3 +41,6 @@ public class PostActivity extends AppCompatActivity {
         startActivityForResult(galleryIntent, gallery_pick);
     }
 }
+
+
+
