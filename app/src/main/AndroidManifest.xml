@@ -33,6 +33,7 @@
         </activity>
 
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".PostActivity"></activity>
     </application>
 
 </manifest>
