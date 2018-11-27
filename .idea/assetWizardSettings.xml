@@ -16,14 +16,26 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="imageAsset" value="$APPLICATION_HOME_DIR$/bin/C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Android Studio\&quot;C:\Users\Julia\Downloads\Cursor-Select-icon.png&quot;" />
+                                      <entry key="outputName" value="add_icon" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcher">
+                              <value>
+                                <PersistentState>
                                   <option name="children">
                                     <map>
-                                      <entry key="clipartAsset">
+                                      <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_box_black_24dp.xml" />
+                                                <entry key="scalingPercent" value="66" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,18 +45,12 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Android Studio\&quot;C:\Users\Julia\Downloads\Cursor-Select-icon.png&quot;" />
-                                      <entry key="outputName" value="add_icon" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Desktop/icon.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
@@ -53,6 +59,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>
