@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String userid = auth.getCurrentUser().getUid();
                             DatabaseReference currentUser = dB.child(userid);
                             currentUser.child("Username").setValue(username);
-                            Toast.makeText(RegisterActivity.this, "Registeration Successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(i);

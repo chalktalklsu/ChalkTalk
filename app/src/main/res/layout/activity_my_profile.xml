@@ -8,18 +8,52 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textMyProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="My Profile"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="30sp" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textMyProfile"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="-16dp"
+        android:layout_toStartOf="@+id/textMyProfile"
+        android:text="Full Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editTextDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_ChangeDisplayName"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:text="My Group"
-        android:textSize="20sp"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="7dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart" />
 
-
-        />
+    <Button
+        android:id="@+id/btn_ChangeDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        android:text="Change" />
 
 
 
