@@ -59,7 +59,7 @@ public class PostActivity extends AppCompatActivity {
         subButtn = (Button) findViewById(R.id.subButton);
         textDesc = (EditText) findViewById(R.id.postText);
         storage = FirebaseStorage.getInstance().getReference();
-        databaseRef = database.getInstance().getReference();
+        databaseRef = database.getInstance().getReference().child("Posts");
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
@@ -107,7 +107,7 @@ public class PostActivity extends AppCompatActivity {
                                         newPost.child("desc").setValue(postDesc);
                                         newPost.child("imageURL").setValue(downloadUrl);
                                         newPost.child("uid").setValue(mCurrentUser.getUid());
-                                        newPost.child("username").setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        newPost.child("username").setValue(dataSnapshot.child("Username").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
