@@ -48,6 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
                             String userid = auth.getCurrentUser().getUid();
                             DatabaseReference currentUser = dB.child(userid);
                             currentUser.child("Username").setValue(username);
+                            currentUser.child("Major").setValue("Undecided");
+                            currentUser.child("Year").setValue("None");
+                            currentUser.child("Bio").setValue("Add a bio");
+                            currentUser.child("ProfilePicURL").setValue("https://firebasestorage.googleapis.com/v0/b/chalktalk-1abad.appspot.com/o/profile_pics%2Fic_launcher_foreground.png?alt=media&token=b3574797-c133-4800-99d9-801980988ecd");
                             Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
