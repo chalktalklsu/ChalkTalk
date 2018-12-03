@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,14 +19,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Context context = this;
     FirebaseAuth auth;
+    private RecyclerView postList;
+    private DatabaseReference PostsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +62,50 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        PostsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
+        postList = (RecyclerView) findViewById(R.id.recycler_view);
+        postList.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        postList.setLayoutManager(linearLayoutManager);
+
+        displayAllUsersPosts();
+    }
+
+    private void displayAllUsersPosts() {
+        FirebaseRecyclerOptions<Posts> posts = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(PostsRef, Posts.class).build();
+        FirebaseRecyclerAdapter<Posts, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Posts, PostViewHolder>(posts) {
+            @Override
+            protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull Posts model) {
+                holder.description.setText(model.getDesc());
+                Picasso.get().load(model.getImageURL()).into(holder.postImage);
+            }
+
+            @NonNull
+            @Override
+            public PostViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_items, viewGroup, false);
+                PostViewHolder viewHolder = new PostViewHolder(view);
+                return  viewHolder;
+            }
+        };
+
+        postList.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+    public static class PostViewHolder extends RecyclerView.ViewHolder{
+        TextView description;
+        ImageView postImage;
+        public PostViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            description = itemView.findViewById(R.id.description);
+            postImage = itemView.findViewById(R.id.post_image);
+
+        }
 
     }
 
